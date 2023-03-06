@@ -31,13 +31,17 @@ public class LoginController {
 
     @PostMapping("/createUser")
     public String saveUserDetail(@ModelAttribute UserDetailRequestPojo userDetailRequestPojo, HttpSession session) {
-
-        userService.saveUserDetail(userDetailRequestPojo);
-        if(userDetailRequestPojo!=null){
-            session.setAttribute("msg", "Register Successfully");
+        boolean f=userService.checkEmail(userDetailRequestPojo.getEmail());
+        if(f){
+            session.setAttribute("msg", "Email already exists");
         }
-        else{
-            session.setAttribute("msg", "Something wrong on server");
+        else {
+            userService.saveUserDetail(userDetailRequestPojo);
+            if (userDetailRequestPojo != null) {
+                session.setAttribute("msg", "Register Successfully");
+            } else {
+                session.setAttribute("msg", "Something wrong on server");
+            }
         }
         return "redirect:/register";
     }

@@ -17,6 +17,10 @@ public class UserServiceImpl implements UserService{
     public final BCryptPasswordEncoder passwordEncode;
 
     @Override
+    public boolean checkEmail(String email){
+        return userRepo.existsByEmail(email);
+    }
+    @Override
     public void saveUserDetail(UserDetailRequestPojo userDetailRequestPojo){
         Users user;
         userDetailRequestPojo.setPassword(passwordEncode.encode(userDetailRequestPojo.getPassword()));

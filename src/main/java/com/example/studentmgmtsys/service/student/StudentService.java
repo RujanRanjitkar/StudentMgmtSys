@@ -8,7 +8,10 @@ import java.util.List;
 public interface StudentService {
     List<Student> getAllStudents();
 
-    void saveStudentDetail(StudentDetailRequestPojo studentDetailRequestPojo);
+    Student saveStudentDetail(StudentDetailRequestPojo studentDetailRequestPojo);
 
     void deleteStudent(Long student_id);
+
+    Student getStudentById(Long student_id);
+
 }

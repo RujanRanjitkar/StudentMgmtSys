@@ -24,6 +24,7 @@
 <body>
 <div class="container">
     <h1>Student Lists</h1>
+    <a href="/saveStudent" th:href="@{/saveStudent}" class="btn btn-primary ">Add Student</a>
     <table class="table">
         <thead class="thead-dark">
         <tr>
@@ -44,7 +45,8 @@
             <td th:text="${student.phone}"></td>
             <td th:text="${student.email}"></td>
             <td th:text="${student.address}"></td>
-            <td><a th:href="@{{student_id}(student_id= ${student.student_id})}" class="btn btn-primary btn-block my-1">Delete</a> </td>
+            <td><a th:href="@{/editStudent/{student_id}(student_id= ${student.student_id})}" class="btn btn-primary ">Update</a>
+            <a th:href="@{{student_id}(student_id= ${student.student_id})}" class="btn btn-primary ">Delete</a> </td>
         </tr>
         </tbody>
     </table>
